@@ -1,0 +1,29 @@
+.menu {
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4rem;
+}
+
+ul a {
+  width: 100%;
+  padding: 1rem;
+  font-style: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #ddd;
+}
+
+ul a:nth-child(odd) {
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+}
+
+ul a:hover {
+  background-color: #555;
+}
