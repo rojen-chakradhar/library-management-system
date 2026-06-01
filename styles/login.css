@@ -1,0 +1,20 @@
+body {
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#login {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #333;
+  border-radius: 5px;
+}
+
