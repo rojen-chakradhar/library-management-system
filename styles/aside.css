@@ -3,8 +3,9 @@ aside {
   width: 20%;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
+  justify-content: space-between;
   background-color: var(--bg-dark);
+  transition: width 0.3s ease;
 }
 
 .aside-header {
@@ -12,8 +13,8 @@ aside {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
-  border-bottom: 1px solid var(--text);
+  padding: 10px 20px;
+  /* border-bottom: 1px solid var(--text); */
 }
 
 .menu {
@@ -30,18 +31,42 @@ ul {
 
 ul a {
   width: 100%;
-  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 20px;
   font-style: 1rem;
   font-weight: 500;
   text-transform: uppercase;
-  color: #ddd;
+  text-wrap: nowrap;
+  color: var(--text);
+  transition: background-color 0.2s linear, color 0.1s linear;
 }
 
 ul a:nth-child(odd) {
-  border-top: 1px solid #333;
-  border-bottom: 1px solid #333;
+  border-top: 1px solid var(--accent-fade);
+  border-bottom: 1px solid var(--accent-fade);
+}
+
+ul a:last-child {
+  border-bottom: 1px solid var(--accent-fade);
+}
+
+.active {
+  color: var(--secondary);
+  background-color: var(--accent);
 }
 
 ul a:hover {
-  background-color: #555;
+  color: var(--secondary);
+  background-color: var(--accent-fade);
+}
+
+.active:hover {
+  color: var(--secondary);
+  background-color: var(--accent);
+}
+
+.ri-settings-3-line {
+  margin: 10px 20px;
 }

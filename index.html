@@ -12,32 +12,38 @@
   <body>
     <aside>
       <ol class="aside-header">
-        <i class="ri-menu-line menu" onclick="menuClose()"></i>
         <a href="#">
-          <h1 class="logo">LMS</h1>
+          <h1 class="logo hide">LMS</h1>
         </a>
+        <i class="ri-menu-line menu hamMenu" onclick="hamMenu()"></i>
       </ol>
       <ul>
-        <a href="#">
-          <li>dashboard</li>
+        <a href="#" class="active">
+          <i class="ri-dashboard-fill"></i>
+          <li class="hide">dashboard</li>
         </a>
         <a href="">
-          <li>books</li>
+          <i class="ri-book-line"></i>
+          <li class="hide">books</li>
         </a>
         <a href="">
-          <li>taken</li>
+          <i class="ri-user-line"></i>
+          <li class="hide">members</li>
         </a>
         <a href="">
-          <li>remaining</li>
+          <i class="ri-arrow-right-up-line"></i>
+          <li class="hide">issued books</li>
         </a>
         <a href="">
-          <li>people</li>
+          <i class="ri-clipboard-line"></i>
+          <li class="hide">borrowed</li>
         </a>
         <a href="./login.html">
-          <li>Log out</li>
+          <i class="ri-error-warning-line"></i>
+          <li class="hide">overdue</li>
         </a>
       </ul>
-      <!-- <i class="ri-settings-3-line menu"></i> -->
+      <i class="ri-settings-3-line menu"></i>
     </aside>
     <main>
       <header>

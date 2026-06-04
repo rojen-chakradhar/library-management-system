@@ -4,14 +4,14 @@ body {
 
 main {
   min-height: 100dvh;
-  width: 80%;
+  flex: 1;
 }
 
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding:  0.5rem 1rem;
+  padding:  10px 20px;
   border-bottom: 1px solid #33333350;
   background-color: var(--bg-dark);
 }
@@ -20,6 +20,29 @@ header {
   font-size: 1rem;
   font-weight: 500;
   color: #333;
+}
+
+form {
+  width: 18%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 5px;
+  border: 1px solid var(--accent);
+  border-radius: 2rem;
+  background-color: var(--bg-dark);
+  font-size: 1rem;
+}
+
+input {
+  flex: 1;
+  border: none;
+  color: var(--text);
+  background-color: transparent;
+}
+
+input:focus {
+  outline: none;
 }
 
 #search {
