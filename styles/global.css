@@ -17,4 +17,18 @@ html,
 body {
   height: 100%;
   width: 100%;
+  background-color: var(--bg);
+}
+
+:root {
+  --text: #050316; /* text */
+  --text-fade: #646370;
+  --text-dark-fade: #787883;
+  --bg: #fbfbfe; /* bg */
+  --bg-fade: #f2f2fe;
+  --bg-dark: #f3f3f6;
+  --primary: #2f27ce; /* active */
+  --secondary: #dddbff; /* colored bg */
+  --accent: #443dff; /* icons */
+  --accent-fade: #8986fc; /* icons */
 }
