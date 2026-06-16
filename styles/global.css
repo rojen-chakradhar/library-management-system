@@ -21,14 +21,14 @@ body {
 }
 
 :root {
-  --text: #050316; /* text */
+  --text: #050316;
   --text-fade: #646370;
   --text-dark-fade: #787883;
-  --bg: #fbfbfe; /* bg */
+  --bg: #fbfbfe;
   --bg-fade: #f2f2fe;
   --bg-dark: #f3f3f6;
-  --primary: #2f27ce; /* active */
-  --secondary: #dddbff; /* colored bg */
-  --accent: #443dff; /* icons */
-  --accent-fade: #8986fc; /* icons */
+  --primary: #2f27ce;
+  --secondary: #dddbff;
+  --accent: #443dff;
+  --accent-fade: #8986fc;
 }
