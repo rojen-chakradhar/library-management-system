@@ -10,51 +10,321 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
   </head>
   <body>
-    <aside>
-      <ol class="aside-header">
+    <aside id="sidebar">
+      <div class="aside-header">
         <a href="#">
           <h1 class="logo hide">LMS</h1>
         </a>
         <i class="ri-menu-line menu hamMenu" onclick="hamMenu()"></i>
-      </ol>
+      </div>
       <ul>
-        <a href="#" class="active">
+        <a href="#" id="nav-dashboard" class="nav-link active" onclick="switchSection('dashboard')">
           <i class="ri-dashboard-fill"></i>
           <li class="hide">dashboard</li>
         </a>
-        <a href="">
+        <a href="#" id="nav-books" class="nav-link" onclick="switchSection('books')">
           <i class="ri-book-line"></i>
           <li class="hide">books</li>
         </a>
-        <a href="">
+        <a href="#" id="nav-members" class="nav-link" onclick="switchSection('members')">
           <i class="ri-user-line"></i>
           <li class="hide">members</li>
         </a>
-        <a href="">
+        <a href="#" id="nav-issued" class="nav-link" onclick="switchSection('issued')">
           <i class="ri-arrow-right-up-line"></i>
           <li class="hide">issued books</li>
         </a>
-        <a href="">
+        <a href="#" id="nav-borrowed" class="nav-link" onclick="switchSection('borrowed')">
           <i class="ri-clipboard-line"></i>
           <li class="hide">borrowed</li>
         </a>
-        <a href="./login.html">
+        <a href="#" id="nav-overdue" class="nav-link" onclick="switchSection('overdue')">
           <i class="ri-error-warning-line"></i>
           <li class="hide">overdue</li>
         </a>
+        <a href="#" id="nav-logout" class="nav-link" onclick="logout()">
+          <i class="ri-logout-box-line"></i>
+          <li class="hide">logout</li>
+        </a>
       </ul>
-      <i class="ri-settings-3-line menu"></i>
+      <div class="aside-footer">
+        <i class="ri-settings-3-line menu"></i>
+      </div>
     </aside>
     <main>
       <header>
-        <h1 class="logo">Dashboard</h1>
-        <form>
+        <div class="header-left">
+          <i class="ri-menu-line mobile-menu-btn" onclick="toggleMobileMenu()"></i>
+          <h1 class="logo" id="header-title">Dashboard</h1>
+        </div>
+        <form onsubmit="event.preventDefault();">
           <i class="ri-search-line"></i>
-          <input type="text" placeholder="Search book, members,...">
+          <input type="text" id="search-input" placeholder="Search book, members..." oninput="triggerSearch()">
         </form>
-        <!-- <div class="profile"><i class="ri-user-line user"></i></div> -->
       </header>
+
+      <section id="dashboard-section" class="content-section">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-info">
+              <span class="stat-label">Total Books</span>
+              <span class="stat-value" id="stat-total-books">0</span>
+            </div>
+            <div class="stat-icon">
+              <i class="ri-book-line"></i>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span class="stat-label">Total Members</span>
+              <span class="stat-value" id="stat-total-members">0</span>
+            </div>
+            <div class="stat-icon">
+              <i class="ri-user-line"></i>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span class="stat-label">Issued Books</span>
+              <span class="stat-value" id="stat-issued-books">0</span>
+            </div>
+            <div class="stat-icon">
+              <i class="ri-arrow-right-up-line"></i>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span class="stat-label">Overdue Books</span>
+              <span class="stat-value" id="stat-overdue-books">0</span>
+            </div>
+            <div class="stat-icon" style="background-color: #fde8e8; color: #c81e1e;">
+              <i class="ri-error-warning-line"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-details">
+          <div class="card-panel">
+            <h3>Recent Activities</h3>
+            <div class="activity-list" id="activity-list"></div>
+          </div>
+          <div class="card-panel">
+            <h3>Quick Actions</h3>
+            <div class="quick-actions-panel">
+              <button class="action-btn" onclick="openIssueModal()">
+                <i class="ri-arrow-right-up-line"></i>
+                <span>Issue a Book</span>
+              </button>
+              <button class="action-btn" onclick="openBookModal()">
+                <i class="ri-book-line"></i>
+                <span>Add a New Book</span>
+              </button>
+              <button class="action-btn" onclick="openMemberModal()">
+                <i class="ri-user-line"></i>
+                <span>Add a Member</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="books-section" class="content-section" style="display: none;">
+        <div class="section-header">
+          <h2>Books Directory</h2>
+          <button class="btn-primary" onclick="openBookModal()">
+            <i class="ri-add-line"></i>
+            <span>Add Book</span>
+          </button>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>ISBN</th>
+                <th>Category</th>
+                <th>Availability</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="books-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="members-section" class="content-section" style="display: none;">
+        <div class="section-header">
+          <h2>Members Directory</h2>
+          <button class="btn-primary" onclick="openMemberModal()">
+            <i class="ri-add-line"></i>
+            <span>Add Member</span>
+          </button>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Member ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="members-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="issued-section" class="content-section" style="display: none;">
+        <div class="section-header">
+          <h2>Currently Issued Books</h2>
+          <button class="btn-primary" onclick="openIssueModal()">
+            <i class="ri-arrow-right-up-line"></i>
+            <span>Issue Book</span>
+          </button>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Book Title</th>
+                <th>Member</th>
+                <th>Issue Date</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="issued-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="borrowed-section" class="content-section" style="display: none;">
+        <div class="section-header">
+          <h2>Borrowing Transactions Log</h2>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Book Title</th>
+                <th>Member</th>
+                <th>Issue Date</th>
+                <th>Return Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="borrowed-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="overdue-section" class="content-section" style="display: none;">
+        <div class="section-header">
+          <h2>Overdue Returns</h2>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Book Title</th>
+                <th>Member</th>
+                <th>Due Date</th>
+                <th>Days Late</th>
+                <th>Estimated Fine</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="overdue-table-body"></tbody>
+          </table>
+        </div>
+      </section>
     </main>
+
+    <dialog id="book-modal">
+      <form id="book-form" onsubmit="saveBook(event)">
+        <h3 id="book-modal-title">Add New Book</h3>
+        <input type="hidden" id="book-form-id">
+        <div class="form-group">
+          <label for="book-title">Title</label>
+          <input type="text" id="book-title" required>
+        </div>
+        <div class="form-group">
+          <label for="book-author">Author</label>
+          <input type="text" id="book-author" required>
+        </div>
+        <div class="form-group">
+          <label for="book-isbn">ISBN</label>
+          <input type="text" id="book-isbn" required>
+        </div>
+        <div class="form-group">
+          <label for="book-category">Category</label>
+          <input type="text" id="book-category" required>
+        </div>
+        <div class="form-group">
+          <label for="book-quantity">Quantity</label>
+          <input type="number" id="book-quantity" min="1" required>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-secondary" onclick="closeBookModal()">Cancel</button>
+          <button type="submit" class="btn-primary">Save Book</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="member-modal">
+      <form id="member-form" onsubmit="saveMember(event)">
+        <h3 id="member-modal-title">Add New Member</h3>
+        <input type="hidden" id="member-form-id">
+        <div class="form-group">
+          <label for="member-name">Full Name</label>
+          <input type="text" id="member-name" required>
+        </div>
+        <div class="form-group">
+          <label for="member-email">Email Address</label>
+          <input type="email" id="member-email" required>
+        </div>
+        <div class="form-group">
+          <label for="member-phone">Phone Number</label>
+          <input type="tel" id="member-phone" required>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-secondary" onclick="closeMemberModal()">Cancel</button>
+          <button type="submit" class="btn-primary">Save Member</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="issue-modal">
+      <form id="issue-form" onsubmit="issueBookSubmit(event)">
+        <h3>Issue a Book</h3>
+        <div class="form-group">
+          <label for="issue-book-select">Select Book</label>
+          <select id="issue-book-select" required></select>
+        </div>
+        <div class="form-group">
+          <label for="issue-member-select">Select Member</label>
+          <select id="issue-member-select" required></select>
+        </div>
+        <div class="form-group">
+          <label for="issue-date">Issue Date</label>
+          <input type="date" id="issue-date" required>
+        </div>
+        <div class="form-group">
+          <label for="issue-due-date">Due Date</label>
+          <input type="date" id="issue-due-date" required>
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-secondary" onclick="closeIssueModal()">Cancel</button>
+          <button type="submit" class="btn-primary">Issue Book</button>
+        </div>
+      </form>
+    </dialog>
+
     <script src="./scripts/script.js"></script>
   </body>
 </html>
