@@ -9,7 +9,7 @@ I created this library management system cuz my college doesnt have one. It take
 - login
 
 ## view site
-- search 
+- search [https://tu-lms.netlify.app](https://tu-lms.netlify.app)
 
 or
 - clone the repo from my [github](https://github.com/rojen-chakradhar/library-management-system)
