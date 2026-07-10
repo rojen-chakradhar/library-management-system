@@ -21,12 +21,12 @@ body {
 }
 
 :root {
-  --text: #444389;
+  --text: #000;
   --text-fade: #646370;
   --text-dark-fade: #787883;
-  --bg: #FFFBDB;
+  --bg: #fff;
   --bg-fade: #f2f2fe;
-  --bg-dark: #FFFDEB;
+  --bg-dark: #fff;
   --primary: #7776BC;
   --secondary: #dddbff;
   --accent: #CDC7E5;
