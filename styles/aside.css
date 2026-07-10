@@ -50,14 +50,14 @@ aside.collapsed .logo {
   color: var(--primary);
 }
 
-ul {
+ul, .aside-footer {
   display: flex;
   flex-direction: column;
   gap: 8px;
   padding: 10px;
 }
 
-ul a {
+ul a, .aside-footer a {
   display: flex;
   align-items: center;
   gap: 15px;
@@ -72,7 +72,7 @@ ul a {
   transition: background-color 0.2s, color 0.2s;
 }
 
-ul a i {
+ul a i, .aside-footer a i {
   font-size: 1.25rem;
   min-width: 24px;
   display: flex;
@@ -80,7 +80,7 @@ ul a i {
   justify-content: center;
 }
 
-aside.collapsed ul a {
+aside.collapsed ul a, aside.collapsed .aside-footer a {
   justify-content: center;
   padding: 12px 0;
 }
@@ -89,26 +89,14 @@ aside.collapsed .hide {
   display: none !important;
 }
 
-ul a.active {
+ul a.active, .aside-footer a.active {
   color: var(--primary);
   background-color: var(--secondary);
 }
 
-ul a:hover:not(.active) {
+ul a:hover:not(.active), .aside-footer a:hover:not(.active) {
   color: var(--text);
   background-color: var(--bg-fade);
-}
-
-.aside-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 20px;
-  border-top: 1px solid var(--secondary);
-}
-
-aside.collapsed .aside-footer {
-  justify-content: center;
 }
 
 @media (max-width: 768px) {
