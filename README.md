@@ -16,4 +16,4 @@ or
 
 
 
-###### No ai was made to make this.
+###### github copilot was used to make the search thing work.
